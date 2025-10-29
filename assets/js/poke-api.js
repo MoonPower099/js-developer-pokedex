@@ -9,8 +9,11 @@ function convertPokeApiDetailToPokemon(pokeDetail) {
     pokemon.types = types
     pokemon.type = type
 
-    // Linha corrigida:
-    pokemon.photo = pokeDetail.sprites.other['official-artwork'].front_default
+    // 🔄 Linha corrigida com fallback
+    pokemon.photo =
+        pokeDetail.sprites.other['official-artwork'].front_default ||
+        pokeDetail.sprites.other.home.front_default ||
+        pokeDetail.sprites.front_default
 
     return pokemon
 }
